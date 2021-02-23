@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 个人阿里云
+ Source Server         : 本地
  Source Server Type    : MySQL
- Source Server Version : 50731
- Source Host           : 39.96.113.74:3306
+ Source Server Version : 50726
+ Source Host           : 127.0.0.1:3306
  Source Schema         : xyyl-erp
 
  Target Server Type    : MySQL
- Target Server Version : 50731
+ Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 09/02/2021 16:49:12
+ Date: 23/02/2021 21:52:02
 */
 
 SET NAMES utf8mb4;
@@ -65,13 +65,14 @@ CREATE TABLE `erp_admin`  (
   `status` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'normal' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '管理员表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_admin
 -- ----------------------------
-INSERT INTO `erp_admin` VALUES (1, 'root', '开发者', 'df54dbe0a07a5499bdc2f27fc7566d12', 'd4e439', '/assets/img/title.png', 'linxyyl@163.com', 0, 1612860007, '116.18.23.127', 1607494716, 1612860029, '', 'normal');
-INSERT INTO `erp_admin` VALUES (2, 'admin', 'admin', '21ac50fa870647692df49f542301097a', 'm0anVN', '/assets/img/admin.jpg', 'admin@admin.com', 0, 1612860033, '116.18.23.127', 1607494716, 1612860033, 'bd9ea036-9d14-473b-aaff-3afff7c2937d', 'normal');
+INSERT INTO `erp_admin` VALUES (1, 'root', '开发者', 'df54dbe0a07a5499bdc2f27fc7566d12', 'd4e439', '/assets/img/title.png', 'linxyyl@163.com', 0, 1614087960, '127.0.0.1', 1607494716, 1614088235, '', 'normal');
+INSERT INTO `erp_admin` VALUES (2, 'admin', 'admin', '21ac50fa870647692df49f542301097a', 'm0anVN', '/assets/img/admin.jpg', 'admin@admin.com', 0, 1614088238, '127.0.0.1', 1607494716, 1614088238, 'dff38667-cdde-49fd-9695-79017297360e', 'normal');
+INSERT INTO `erp_admin` VALUES (3, 'cs123', 'cs1234', '4e13583f54718e9e1a2dc0bb7a028a70', '8epHQK', '/assets/img/avatar.png', '123@123.com', 0, NULL, NULL, 1613132392, 1613132392, '', 'normal');
 
 -- ----------------------------
 -- Table structure for erp_admin_log
@@ -113,12 +114,7 @@ CREATE TABLE `erp_attachment`  (
   `storage` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'local' COMMENT '存储位置',
   `sha1` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '文件 sha1编码',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '附件表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of erp_attachment
--- ----------------------------
-INSERT INTO `erp_attachment` VALUES (3, 1, 0, '/uploads/20210209/8b75ab495e1c331f691082c464c7ee1d.jpg', '500', '667', 'jpg', 0, 26240, 'image/jpeg', '{\"name\":\"u=2980929284,185161147&amp;fm=26&amp;gp=0.jpg\"}', 1612847365, 1612847365, 1612847365, 'local', 'f03d1b4de6d44006221b7d3d7e3573c239c9ccdf');
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '附件表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for erp_auth_group
@@ -133,13 +129,14 @@ CREATE TABLE `erp_auth_group`  (
   `updatetime` int(11) NULL DEFAULT NULL COMMENT '更新时间',
   `status` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '状态',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '分组表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '分组表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_auth_group
 -- ----------------------------
 INSERT INTO `erp_auth_group` VALUES (1, 0, 'Admin group', '*', 1607494716, 1607494716, 'normal');
-INSERT INTO `erp_auth_group` VALUES (2, 1, '超级管理组', '1,2,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,40,41,42,43,44,45,46,47,48,49,50,148,149,150,151,152,153,154,158,159,160,161,162,163,164,168,169,170,171,172,173,174,177,178,179,180,181,182,183,187,188,189,190,191,192,193,221,222,223,224,225,226,227,228,231,256,257,258,259,260,261,262,263,264,265,266,267,268,271,272,273,274,275,276,277,281,282,283,284,285,286,287,290,291,292,293,294,295,296,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,351,352,5,147,126,124,157,167,136,186,220,195,230,255,270,280,279,289,316,333,350,245', 1607494716, 1612860024, 'normal');
+INSERT INTO `erp_auth_group` VALUES (2, 1, '超级管理组', '2,6,7,8,9,10,11,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,40,41,42,43,44,45,46,47,48,49,50,148,149,150,151,152,153,154,158,159,160,161,162,163,164,168,169,170,171,172,173,174,177,178,179,180,181,182,183,187,188,189,190,191,192,193,221,222,223,224,225,226,227,228,231,256,257,258,259,260,261,262,263,264,265,266,267,268,281,282,283,284,285,286,287,290,291,292,293,294,295,296,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,351,352,361,362,363,364,365,366,367,368,369,370,371,372,5,147,126,124,157,167,136,186,220,195,230,255,280,279,289,316,333,350,245,360', 1607494716, 1614088211, 'normal');
+INSERT INTO `erp_auth_group` VALUES (3, 2, '订单管理员', '351,352,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,317,318,319,320,321,322,323,324,325,326,327,328,329,330,331,281,282,283,284,285,286,287,290,291,292,293,294,295,296,256,257,258,259,260,261,262,263,264,265,266,267,268,271,272,273,274,275,276,277,221,222,223,224,225,226,227,228,231,187,188,189,190,191,192,193,177,178,179,180,181,182,183,148,149,150,151,152,153,154,158,159,160,161,162,163,164,168,169,170,171,172,173,174,350,245,124,333,279,316,280,289,255,195,270,220,230,186,126,136,147,157,167', 1613132229, 1613132229, 'normal');
 
 -- ----------------------------
 -- Table structure for erp_auth_group_access
@@ -158,6 +155,7 @@ CREATE TABLE `erp_auth_group_access`  (
 -- ----------------------------
 INSERT INTO `erp_auth_group_access` VALUES (1, 1);
 INSERT INTO `erp_auth_group_access` VALUES (2, 2);
+INSERT INTO `erp_auth_group_access` VALUES (3, 3);
 
 -- ----------------------------
 -- Table structure for erp_auth_rule
@@ -182,7 +180,7 @@ CREATE TABLE `erp_auth_rule`  (
   UNIQUE INDEX `name`(`name`) USING BTREE,
   INDEX `pid`(`pid`) USING BTREE,
   INDEX `weigh`(`weigh`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 360 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '节点表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 375 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '节点表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of erp_auth_rule
@@ -362,15 +360,6 @@ INSERT INTO `erp_auth_rule` VALUES (266, 'menu', 255, 'stock/stock_check/del', '
 INSERT INTO `erp_auth_rule` VALUES (267, 'menu', 255, 'stock/stock_check/destroy', 'stock.stock_check/destroy', '真实删除', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
 INSERT INTO `erp_auth_rule` VALUES (268, 'menu', 255, 'stock/stock_check/restore', 'stock.stock_check/restore', '还原', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
 INSERT INTO `erp_auth_rule` VALUES (269, 'menu', 255, 'stock/stock_check/multi', 'stock.stock_check/multi', '批量更新', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
-INSERT INTO `erp_auth_rule` VALUES (270, 'menu', 195, 'stock/stock_transfer', 'stock.stock_transfer/index', '仓库调拨', 'fa fa-exchange', '', '', 1, NULL, 1612447880, 188, 'normal');
-INSERT INTO `erp_auth_rule` VALUES (271, 'menu', 270, 'stock/stock_transfer/index', 'stock.stock_transfer/index', '查看', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
-INSERT INTO `erp_auth_rule` VALUES (272, 'menu', 270, 'stock/stock_transfer/recyclebin', 'stock.stock_transfer/recyclebin', '回收站', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
-INSERT INTO `erp_auth_rule` VALUES (273, 'menu', 270, 'stock/stock_transfer/add', 'stock.stock_transfer/add', '添加', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
-INSERT INTO `erp_auth_rule` VALUES (274, 'menu', 270, 'stock/stock_transfer/edit', 'stock.stock_transfer/edit', '编辑', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
-INSERT INTO `erp_auth_rule` VALUES (275, 'menu', 270, 'stock/stock_transfer/del', 'stock.stock_transfer/del', '删除', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
-INSERT INTO `erp_auth_rule` VALUES (276, 'menu', 270, 'stock/stock_transfer/destroy', 'stock.stock_transfer/destroy', '真实删除', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
-INSERT INTO `erp_auth_rule` VALUES (277, 'menu', 270, 'stock/stock_transfer/restore', 'stock.stock_transfer/restore', '还原', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
-INSERT INTO `erp_auth_rule` VALUES (278, 'menu', 270, 'stock/stock_transfer/multi', 'stock.stock_transfer/multi', '批量更新', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
 INSERT INTO `erp_auth_rule` VALUES (279, 'menu', 124, 'pss', '', '销购管理', 'fa fa-retweet', '', '', 1, 1610960614, 1612447663, 88, 'normal');
 INSERT INTO `erp_auth_rule` VALUES (280, 'menu', 279, 'pss/company', 'pss.company/index', '客户管理', 'fa fa-address-book', '', '', 1, NULL, 1610960691, 0, 'normal');
 INSERT INTO `erp_auth_rule` VALUES (281, 'menu', 280, 'pss/company/index', 'pss.company/index', '查看', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
@@ -434,6 +423,21 @@ INSERT INTO `erp_auth_rule` VALUES (356, 'menu', 350, 'order/order/del', 'order.
 INSERT INTO `erp_auth_rule` VALUES (357, 'menu', 350, 'order/order/destroy', 'order.order/destroy', '真实删除', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
 INSERT INTO `erp_auth_rule` VALUES (358, 'menu', 350, 'order/order/restore', 'order.order/restore', '还原', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
 INSERT INTO `erp_auth_rule` VALUES (359, 'menu', 350, 'order/order/multi', 'order.order/multi', '批量更新', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (360, 'menu', 195, 'stock/stock_transfer', 'stock.stock_transfer/index', '仓库调拨管理', 'fa fa-circle-o', '', '', 1, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (361, 'menu', 360, 'stock/stock_transfer/index', 'stock.stock_transfer/index', '查看', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (362, 'menu', 360, 'stock/stock_transfer/submitverify', 'stock.stock_transfer/submitverify', '提交审核', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (363, 'menu', 360, 'stock/stock_transfer/confirmverify', 'stock.stock_transfer/confirmverify', '确认审核', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (364, 'menu', 360, 'stock/stock_transfer/rejectverify', 'stock.stock_transfer/rejectverify', '审核驳回', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (365, 'menu', 360, 'stock/stock_transfer/againverify', 'stock.stock_transfer/againverify', '复审', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (366, 'menu', 360, 'stock/stock_transfer/cancelput', 'stock.stock_transfer/cancelput', '取消入库', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (367, 'menu', 360, 'stock/stock_transfer/confirmput', 'stock.stock_transfer/confirmput', '确认入库', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (368, 'menu', 360, 'stock/stock_transfer/recyclebin', 'stock.stock_transfer/recyclebin', '回收站', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (369, 'menu', 360, 'stock/stock_transfer/add', 'stock.stock_transfer/add', '添加', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (370, 'menu', 360, 'stock/stock_transfer/edit', 'stock.stock_transfer/edit', '编辑', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (371, 'menu', 360, 'stock/stock_transfer/del', 'stock.stock_transfer/del', '删除', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (372, 'menu', 360, 'stock/stock_transfer/destroy', 'stock.stock_transfer/destroy', '真实删除', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (373, 'menu', 360, 'stock/stock_transfer/restore', 'stock.stock_transfer/restore', '还原', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
+INSERT INTO `erp_auth_rule` VALUES (374, 'menu', 360, 'stock/stock_transfer/multi', 'stock.stock_transfer/multi', '批量更新', 'fa fa-circle-o', '', '', 0, NULL, NULL, 0, 'normal');
 
 -- ----------------------------
 -- Table structure for erp_command
@@ -450,14 +454,7 @@ CREATE TABLE `erp_command`  (
   `updatetime` int(11) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
   `status` enum('successed','failured') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 56 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '在线命令表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of erp_command
--- ----------------------------
-INSERT INTO `erp_command` VALUES (53, 'menu', '[\"--controller=pss\\/Sell\"]', 'php think menu --controller=pss/Sell', '', 1612446208, 1612446208, 1612446208, 'successed');
-INSERT INTO `erp_command` VALUES (54, 'menu', '[\"--controller=pss\\/Purchase\"]', 'php think menu --controller=pss/Purchase', '', 1612446503, 1612446503, 1612446503, 'successed');
-INSERT INTO `erp_command` VALUES (55, 'menu', '[\"--controller=order\\/Order\"]', 'php think menu --controller=order/Order', '', 1612446751, 1612446751, 1612446751, 'successed');
+) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '在线命令表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for erp_company
@@ -503,6 +500,7 @@ CREATE TABLE `erp_config`  (
 -- ----------------------------
 -- Records of erp_config
 -- ----------------------------
+INSERT INTO `erp_config` VALUES (1, 'name', 'basic', 'Site name', '请填写站点名称', 'string', '测试公司', '', 'required', '');
 INSERT INTO `erp_config` VALUES (2, 'beian', 'basic', 'Beian', '', 'string', '', '', '', '');
 INSERT INTO `erp_config` VALUES (3, 'cdnurl', 'basic', 'Cdn url', '如果静态资源使用第三方云储存请配置该值', 'string', '', '', '', '');
 INSERT INTO `erp_config` VALUES (5, 'timezone', 'basic', 'Timezone', '', 'string', 'Asia/Shanghai', '', 'required', '');
@@ -511,7 +509,7 @@ INSERT INTO `erp_config` VALUES (8, 'fixedpage', 'basic', 'Fixed page', '请尽�
 INSERT INTO `erp_config` VALUES (9, 'categorytype', 'dictionary', 'Category type', '', 'array', '{\"default\":\"Default\",\"page\":\"Page\",\"article\":\"Article\",\"test\":\"Test\"}', '', '', '');
 INSERT INTO `erp_config` VALUES (10, 'configgroup', 'dictionary', 'Config group', '', 'array', '{\"basic\":\"Basic\",\"Email\":\"email\",\"example\":\"Example\" }', '', '', '');
 INSERT INTO `erp_config` VALUES (24, 'version', 'basic', '版本号', '', 'string', '1.0.0', '', '', '');
-INSERT INTO `erp_config` VALUES (25, 'request_number', 'basic', '访问次数', '', '', '1368', '访问次数', '', '');
+INSERT INTO `erp_config` VALUES (25, 'request_number', 'basic', '访问次数', '', '', '1401', '访问次数', '', '');
 
 -- ----------------------------
 -- Table structure for erp_crontab
@@ -584,8 +582,8 @@ CREATE TABLE `erp_goods`  (
 -- ----------------------------
 -- Records of erp_goods
 -- ----------------------------
-INSERT INTO `erp_goods` VALUES (10, '卤鸡蛋', 'XBL0909123123', 200.00, '', 11, 1612447386, 1612847383, NULL, '2', '/uploads/20210209/8b75ab495e1c331f691082c464c7ee1d.jpg', 6, 6, 4, 6, 1, '');
-INSERT INTO `erp_goods` VALUES (11, '泡椒凤爪', 'FZ68686868', 400.00, '', 10, 1612447976, 1612447984, NULL, '2', '', 6, 6, 4, 6, 1, '');
+INSERT INTO `erp_goods` VALUES (10, '卤鸡蛋', 'XBL0909123123', 200.00, '', 10, 1612447386, 1613999025, NULL, '2', '', 6, 6, 4, 7, 1, '');
+INSERT INTO `erp_goods` VALUES (11, '泡椒凤爪', 'FZ68686868', 400.00, '', 11, 1612447976, 1612447984, NULL, '2', '', 6, 6, 4, 6, 1, '');
 
 -- ----------------------------
 -- Table structure for erp_goods_brand
@@ -912,7 +910,7 @@ CREATE TABLE `erp_stock_transfer`  (
 -- Records of erp_stock_transfer
 -- ----------------------------
 INSERT INTO `erp_stock_transfer` VALUES (19, 1, 9, 8, 11, 28, 'DB21020422270519820654', 'db1cc217cS6fAf05k4J4K45cw42si@5DG=2EqI007M%F5jBCru3c75DybF9[5FB81BE4s904oFD26F2RSH55e30d(9]T9c0eFf8B6BXbd2kCWp40F1ZE75bFf!F5C5F2', '6', 1612448825, 1612448834, NULL, 200, '');
-INSERT INTO `erp_stock_transfer` VALUES (20, 2, 8, 9, 10, 29, 'DB21020512023225721003', 'db268F2oE31B1KZB7323lJ56o7282E6IB04e98=z2GWGh4fC3bvEX35$4O457Bu3!93A3ETE0m80@10ef37q6AnntF963F75U77*AxCep6v00A6b]3fLB077ei24U7yB', '1', 1612497752, 1612497752, NULL, 10, '');
+INSERT INTO `erp_stock_transfer` VALUES (20, 2, 8, 9, 10, 29, 'DB21022321455049312781', 'db4f77A0156C@Q4[gEbF5Z0614DCYe677P0.8F80610diH0A0ZA5%T2dV9rJ0mCa2Ua8c6BFdAd40=(40Q3FCQa2s4OUAU5F2L8p7DwTp9938uAd$45q1Fjxp8dfc50F', '1', 1614087950, 1614087950, NULL, 34, '');
 
 -- ----------------------------
 -- Table structure for erp_supplier
@@ -934,7 +932,7 @@ CREATE TABLE `erp_supplier`  (
 -- ----------------------------
 -- Records of erp_supplier
 -- ----------------------------
-INSERT INTO `erp_supplier` VALUES (5, '南城批发部', '13131313311', '东莞001', 1612448935, 1612495203, NULL, '2', '');
+INSERT INTO `erp_supplier` VALUES (5, '南城批发部', '13131313311', '东莞001', 1612448935, 1612448935, NULL, '2', '');
 
 -- ----------------------------
 -- Table structure for erp_user
