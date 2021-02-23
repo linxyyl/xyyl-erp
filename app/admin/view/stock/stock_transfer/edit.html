@@ -1,0 +1,33 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">调出仓库:</label>
+        <div class="form-inline col-xs-12 col-sm-8" data-toggle="cxselect" data-selects="stock,goods,stock2">
+            <select class="stock form-control" name="row[out_stock_id]" data-url="ajax/getStockList" data-value="{$row.out_stock_id}"></select>
+            商品 : <select class="goods form-control" name="row[stock_goods_id]" data-url="ajax/getGoodsList" data-query-name="stock_id" data-value="{$row.stock_goods_id}"></select>
+            调入仓库 <select class="stock2 form-control" name="row[get_stock_id]" data-url="ajax/getOutStock" data-query-name="goods_id" data-value="{$row.get_stock_id}"></select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-number" class="form-control" name="row[number]" type="number" value="{$row.number|htmlentities}">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Remark')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-remark" class="form-control" name="row[remark]" type="text" value="{$row.remark|htmlentities}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

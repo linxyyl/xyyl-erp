@@ -1,0 +1,64 @@
+<form id="add-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Company_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select id="c-company_id" data-rule="required" class="form-control selectpicker" name="row[company_id]"
+                    data-live-search="true">
+                {foreach name="companyList" item="vo"}
+                <option value="{$key}" {in name="key" value="" }selected{
+                /in}>{$vo}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">选择仓库:</label>
+        <div class="form-inline col-xs-12 col-sm-8" data-toggle="cxselect" data-selects="stock,goods">
+            <select class="stock form-control" name="row[stock_id]" data-url="ajax/getStockList"></select>
+            选择商品 : <select class="goods form-control" name="row[stock_goods_id]" data-url="ajax/getGoodsList" data-query-name="stock_id"></select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Goods_number')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-goods_number" class="form-control" name="row[goods_number]" type="number" value="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Goods_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-goods_price" class="form-control" step="0.01" name="row[goods_price]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Other_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-other_price" class="form-control" step="0.01" name="row[other_price]" type="number" value="0.00">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Transport_price')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-transport_price" class="form-control" step="0.01" name="row[transport_price]" type="number" value="0.00">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Remark')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-remark" class="form-control" name="row[remark]" type="text">
+        </div>
+    </div>
+
+    
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

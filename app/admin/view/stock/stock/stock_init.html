@@ -1,0 +1,29 @@
+<form id="stockInit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="/admin/stock.stock/stockInit">
+    <input type="hidden" name="stock_id" value="{$stock.id}">
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Title')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <span class="form-control">{$stock.title}</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">选择商品</label>
+        <div class="col-xs-12 col-sm-8">
+            <select  id="c-goods-list" data-rule="required" class="form-control selectpicker " name="goods_list[]" data-live-search="true" multiple="1">
+                {foreach name="goods_list" item="vo"}
+                <option value="{$key}">{$vo}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
+

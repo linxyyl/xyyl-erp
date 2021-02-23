@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YF-CMS</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<style>
+    tr {
+        height: 40px;
+    }
+</style>
+
+<body>
+<div id="app">
+    <div :style="bg_color3"><h2>欢迎使用xyyl-erp进销存系统 您已经在网站停留 {{ keep }} 秒</h2></div>
+
+    <table border="1" cellspacing="0" cellpadding="0">
+
+        <tr>
+
+            <th><a href="https://gitee.com/linxyyl/xyyl-erp" target="_blank"  >点击进入码云开源地址</a></th>
+
+            <th>
+                <a href="/admin" target="_blank"  >
+                    <span v-html="info" :style="bg_color1"></span>
+                </a>
+            </th>
+
+            <th><span v-html="time" :style="bg_color"></span></th>
+
+        </tr>
+
+
+    </table>
+
+</div>
+
+</body>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: '发送请求YF-CMS',
+            info: '点击进入后台管理',
+            time: "<?php echo date('yy-m-d H:i:s', time()) ?>",
+            keep: 0,
+            bg_color: {color: 'rgb(255,255,0)'},
+            bg_color1: {color: 'rgb(255,0,0)'},
+            bg_color2: {color: 'rgb(0,255,255)'},
+            bg_color3: {background: 'rgb(0,0,255)', width: '100%', height: '40px'},
+        },
+
+        // 加载完成事件
+        mounted: function () {
+            var th = this;
+            setInterval(function () {
+
+                axios.post("index/index/getTime", {})
+                    .then(function (response) {
+                        th.time = response.data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+                setInterval(function () {
+                    var rgb_number1 = Math.ceil(Math.random() * 255);
+                    var rgb_number2 = Math.ceil(Math.random() * 255);
+                    var rgb_number3 = Math.ceil(Math.random() * 255);
+                    th.bg_color = {
+                        color: 'rgb(' + rgb_number1 + ',' + rgb_number2 + ',' + rgb_number3 + ')',
+                    }
+
+                    var rgb_number1 = Math.ceil(Math.random() * 255);
+                    var rgb_number2 = Math.ceil(Math.random() * 255);
+                    var rgb_number3 = Math.ceil(Math.random() * 255);
+                    th.bg_color1 = {
+                        color: 'rgb(' + rgb_number1 + ',' + rgb_number2 + ',' + rgb_number3 + ')',
+                    }
+
+                    var rgb_number1 = Math.ceil(Math.random() * 255);
+                    var rgb_number2 = Math.ceil(Math.random() * 255);
+                    var rgb_number3 = Math.ceil(Math.random() * 255);
+                    th.bg_color2 = {
+                        color: 'rgb(' + rgb_number1 + ',' + rgb_number2 + ',' + rgb_number3 + ')',
+                    }
+
+                }, 500);
+
+                setInterval(function () {
+                    var rgb_number1 = Math.ceil(Math.random() * 255);
+                    var rgb_number2 = Math.ceil(Math.random() * 255);
+                    var rgb_number3 = Math.ceil(Math.random() * 255);
+                    th.bg_color3 = {
+                        background: 'rgb(' + rgb_number1 + ',' + rgb_number2 + ',' + rgb_number3 + ')',
+                        width: '100%',
+                        height: '40px'
+                    }
+                }, 100)
+
+                th.keep += 1
+            }, 1000);
+        },
+
+        methods: {
+            send: function () {
+
+            }
+        }
+    });
+</script>
+
+</html>

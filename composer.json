@@ -1,0 +1,61 @@
+{
+    "name": "0377/yfcmf-tp6",
+    "description": "YFCMF新版本，基于thinkphp6.0和fastadmin",
+    "type": "project",
+    "keywords": [
+        "thinkphp6",
+        "thinkphp",
+        "fastadmin",
+        "fastadmin-tp6",
+        "yfcmf",
+        "yfcmf-tp6"
+    ],
+    "homepage": "https://www.iuok.cn",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "ice",
+            "email": "ice@sbing.vip"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0",
+        "topthink/framework": "6.0.7",
+        "topthink/think-orm": "^2.0",
+        "topthink/think-view": "^1.0",
+        "topthink/think-captcha": "^3.0",
+        "overtrue/pinyin": "^4.0",
+        "dragonmantank/cron-expression": "^2.3",
+        "topthink/think-multi-app": "^1.0",
+        "overtrue/wechat": "~4.2",
+        "endroid/qr-code": "^1.9",
+        "phpmailer/phpmailer": "~6.1",
+        "phpoffice/phpspreadsheet": "^1.13",
+        "topthink/think-trace": "^1.4",
+        "topthink/think-migration": "^3.0",
+        "topthink/think-mongo": "^3.0",
+        "filp/whoops": "^2.9",
+        "linxyyl/mating": "^1.0"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": "app",
+            "addons\\": "addons"
+        },
+        "psr-0": {
+            "": "extend/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php think service:discover",
+            "@php think vendor:publish"
+        ]
+    }
+}

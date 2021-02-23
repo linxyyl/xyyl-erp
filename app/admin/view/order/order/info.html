@@ -1,0 +1,299 @@
+<?php    /* @var $model \app\admin\model\order\Order */?>
+
+<!--startprint-->
+
+<div class="panel-body">
+    <div class="widget-body no-padding">
+
+
+                    <?php /*盘点单样式*/if($model->group == 1) {
+                        // 获取盘点订单信息
+                        $info = \app\admin\model\stock\StockCheck::where('order_token',$model->order_token)->find();
+                        ?>
+                    <div class="box box-info">
+                        <div class="box-header">
+                            <h3 class="text-center">--盘点单--</h3>
+                        </div>
+                        <div class="box-body">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td>订单编号:</td>
+                                    <td>{$info.code}</td>
+                                    <td>操作人:</td>
+                                    <td>
+                                        <?php echo \app\admin\model\Admin::find($info['admin_id'])->value('nickname'); ?>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>盘点仓库:</td>
+                                    <td>{$stockList[$info.stock_id]}</td>
+                                    <td>盘点商品:</td>
+                                    <td>{$goodsList[$info.goods_id]}</td>
+                                    <td>盘点数量: {$info.number} </td>
+                                </tr>
+
+                                <tr>
+                                    <td>订单创建时间:</td>
+                                    <td>{$info.createtime|date='Y-m-d H:i:s'}</td>
+                                    <td>订单完成时间:</td>
+                                    <td>{$info.updatetime|date='Y-m-d H:i:s'}</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>制表人:</td>
+                                    <td><?php echo  session('admin')['nickname']; ?></td>
+                                    <td>制表时间:</td>
+                                    <td><?php echo date('Y-m-d H:i:s') ?></td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4" align="center">
+                                        <span class="btn btn-danger" onclick="doPrint(this)">打印</span>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <?php }?>
+
+
+        <?php /*调拨单样式*/if($model->group == 2) {
+            // 获取调拨单信息
+            $info = \app\admin\model\stock\StockTransfer::where('order_token',$model->order_token)->find();
+            ?>
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="text-center">--调拨单--</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td>订单编号:</td>
+                            <td>{$info.code}</td>
+                            <td>操作人:</td>
+                            <td>
+                                <?php echo \app\admin\model\Admin::find($info['admin_id'])->value('nickname'); ?>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>调出仓库:</td>
+                            <td>{$stockList[$info.out_stock_id]}</td>
+                            <td>调入仓库:</td>
+                            <td>{$stockList[$info.get_stock_id]}</td>
+                        </tr>
+
+                        <tr>
+                            <td>调拨商品:</td>
+                            <td>{$goodsList[$info.goods_id]}</td>
+                            <td>调拨数量: {$info.number} </td>
+                        </tr>
+
+                        <tr>
+                            <td>订单创建时间:</td>
+                            <td>{$info.createtime|date='Y-m-d H:i:s'}</td>
+                            <td>订单完成时间:</td>
+                            <td>{$info.updatetime|date='Y-m-d H:i:s'}</td>
+
+                        </tr>
+
+                        <tr>
+                            <td>制表人:</td>
+                            <td><?php echo  session('admin')['nickname']; ?></td>
+                            <td>制表时间:</td>
+                            <td><?php echo date('Y-m-d H:i:s') ?></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="4" align="center">
+                                <span class="btn btn-danger" onclick="doPrint(this)">打印</span>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php }?>
+
+        <?php /*销售单样式*/if($model->group == 3) {
+            // 获取调拨单信息
+            $info = \app\admin\model\pss\Sell::where('order_token',$model->order_token)->find();
+            //获取客户信息
+            $company = \app\admin\model\pss\Company::find($info->company_id);
+            ?>
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="text-center">--销售单--</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td>订单编号:</td>
+                            <td>{$info.code}</td>
+                            <td>操作人:</td>
+                            <td>
+                                <?php echo \app\admin\model\Admin::find($info['admin_id'])->value('nickname'); ?>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>销售客户:</td>
+                            <td>{$company.username}</td>
+                            <td>联系电话:</td>
+                            <td>{$company.phone}</td>
+                        </tr>
+
+                        <tr>
+                            <td>客户地址:</td>
+                            <td>{$company.address}</td>
+                        </tr>
+
+                        <tr>
+                            <td>销售仓库:</td>
+                            <td>{$stockList[$info.stock_id]}</td>
+                            <td>销售商品:</td>
+                            <td>{$goodsList[$info.goods_id]}</td>
+                            <td>销售数量: {$info.goods_number} </td>
+                        </tr>
+
+                        <tr>
+                            <td>商品单价: <b>{$info.goods_price}</b> ¥ </td>
+                            <td>商品总价: <b>{$info.goods_price * $info.goods_number} </b> ¥ </td>
+                            <td>其他费用: <b>{$info.other_price}</b> ¥ </td>
+                            <td>运输费用: <b>{$info.transport_price}</b> ¥ </td>
+                            <td>订单总价: <b>{$info.amount_price}</b> ¥ </td>
+
+
+                        </tr>
+
+                        <tr>
+                            <td>订单创建时间:</td>
+                            <td>{$info.createtime|date='Y-m-d H:i:s'}</td>
+                            <td>订单完成时间:</td>
+                            <td>{$info.updatetime|date='Y-m-d H:i:s'}</td>
+                        </tr>
+
+                        <tr>
+                            <td>制表人:</td>
+                            <td><?php echo  session('admin')['nickname']; ?></td>
+                            <td>制表时间:</td>
+                            <td><?php echo date('Y-m-d H:i:s') ?></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="4" align="center">
+                                <span class="btn btn-danger" onclick="doPrint(this)">打印</span>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php }?>
+
+        <?php /*采购单样式*/if($model->group == 4) {
+            // 获取采购单信息
+            $info = \app\admin\model\pss\Purchase::where('order_token',$model->order_token)->find();
+            //获取供应商信息
+            $company = \app\admin\model\pss\Supplier::find($info->supplier_id);
+            ?>
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="text-center">--采购单--</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td>订单编号:</td>
+                            <td>{$info.code}</td>
+                            <td>操作人:</td>
+                            <td>
+                                <?php echo \app\admin\model\Admin::find($info['admin_id'])->value('nickname'); ?>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>供应商:</td>
+                            <td>{$company.username}</td>
+                            <td>联系电话:</td>
+                            <td>{$company.phone}</td>
+                        </tr>
+
+                        <tr>
+                            <td>供应商地址:</td>
+                            <td>{$company.address}</td>
+                        </tr>
+
+                        <tr>
+                            <td>采购仓库:</td>
+                            <td>{$stockList[$info.stock_id]}</td>
+                            <td>采购商品:</td>
+                            <td>{$goodsList[$info.goods_id]}</td>
+                            <td>采购数量: {$info.goods_number} </td>
+                        </tr>
+
+                        <tr>
+                            <td>商品单价: <b>{$info.goods_price}</b> ¥ </td>
+                            <td>商品总价: <b>{$info.goods_price * $info.goods_number} </b> ¥ </td>
+                            <td>其他费用: <b>{$info.other_price}</b> ¥ </td>
+                            <td>运输费用: <b>{$info.transport_price}</b> ¥ </td>
+                            <td>订单总价: <b>{$info.amount_price}</b> ¥ </td>
+
+
+                        </tr>
+
+                        <tr>
+                            <td>订单创建时间:</td>
+                            <td>{$info.createtime|date='Y-m-d H:i:s'}</td>
+                            <td>订单完成时间:</td>
+                            <td>{$info.updatetime|date='Y-m-d H:i:s'}</td>
+                        </tr>
+
+                        <tr>
+                            <td>制表人:</td>
+                            <td><?php echo  session('admin')['nickname']; ?></td>
+                            <td>制表时间:</td>
+                            <td><?php echo date('Y-m-d H:i:s') ?></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="4" align="center">
+                                <span class="btn btn-danger" onclick="doPrint(this)">打印</span>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php }?>
+
+    </div>
+</div>
+
+
+
+<!--endprint-->
+
+<script>
+    function doPrint(obj) {
+        obj.parentNode.parentNode.removeChild(obj.parentNode);
+        bdhtml=window.document.body.innerHTML;
+        sprnstr="<!--startprint-->";
+        eprnstr="<!--endprint-->";
+        prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17);
+        prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr));
+        window.document.body.innerHTML=prnhtml;
+        window.print();
+    }
+</script>
