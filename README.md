@@ -5,7 +5,7 @@
  * php+mysql开发
  * 基于fastAdmin(yfcmf)开发 ,yfcmf是fastAdmin的thinkphp6其中的一个版本,没有任何使用付费插件,请大家放心使用
  * 体验地址 erp.ylhome.fun
- * QQ交流群`967875113`,欢迎交流代码问题!
+ * QQ交流群``,欢迎交流代码问题!
 
 #### 使用说明
 
